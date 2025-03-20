@@ -9,7 +9,13 @@ $dados = $pdo->query('SELECT * FROM compras');
 $comp = $dados->fetchAll(PDO::FETCH_ASSOC);
 
 
+
 echo $twig->render('compras.html', [
+    'titulo' => 'Compras',
+    'compras' => $comp,
+]);
+
+echo $twig->render('editar.html', [
     'titulo' => 'Compras',
     'compras' => $comp,
 ]);
