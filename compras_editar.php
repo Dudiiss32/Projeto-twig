@@ -2,13 +2,18 @@
 
 require("inc/banco.php");
 
-$id = $_GET['id'] ?? null;
+$item = $_POST['item'] ?? null;
+$id= $_POST['id'] ?? null;
 
+$dados = $pdo->prepare('UPDATE compras SET item =:item WHERE id= :id');
 
-if($id){
-    $item = $pdo->prepare('SELECT id FROM compras WHERE :id = id');
-    $query->execute([':id' => $id]);
-    
-}
+// Associa os valores dentro da consulta
+$binds = [
+    ':item' => $item,
+    ':id'=> $id,
+];
+
+// Executa a consulta
+$dados->execute($binds);
 
 header('location:compras.php');

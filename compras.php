@@ -3,19 +3,25 @@
 require_once('twig_carregar.php');
 require('inc/banco.php');
 
-// Busca as compras no banco
-$dados = $pdo->query('SELECT * FROM compras');
 
-$comp = $dados->fetchAll(PDO::FETCH_ASSOC);
+$id = $_GET['id'] ?? null;
 
+if($id){
+    $dados = $pdo->prepare('SELECT * FROM compras WHERE id = :id');
+    $dados->execute([':id' => $id]);
+    $compraEditar = $dados->fetch(PDO::FETCH_ASSOC);    
 
+    echo $twig->render('compras.html', [
+        'titulo' => 'Compras',
+        'compraEditar' => $compraEditar,
+    ]);
+}else{
+    // Busca as compras no banco
 
-echo $twig->render('compras.html', [
-    'titulo' => 'Compras',
-    'compras' => $comp,
-]);
-
-echo $twig->render('editar.html', [
-    'titulo' => 'Compras',
-    'compras' => $comp,
-]);
+    $dados = $pdo->query('SELECT * FROM compras');
+    $comp = $dados->fetchAll(PDO::FETCH_ASSOC);
+    echo $twig->render('compras.html', [
+        'titulo' => 'Compras',
+        'compras' => $comp,
+    ]);
+}

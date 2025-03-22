@@ -3,20 +3,26 @@
 {% block conteudo %}
 Página de compras
 
-
-
-<h3>Adicionar item</h3>
-<form action="compras_adc.php" method="post">
-
-    <input type="text" name="item" placeholder="Escreva o nome do item">
-
-    <input type="submit" value="Adicionar">
-</form>
+{% if compraEditar %}
+    <h3>Editar item</h3>
+    <form action="compras_editar.php" method="post">
+        <input type="hidden" name="id" value="{{ compraEditar.id }}">
+        <input type="text" name="item" value="{{ compraEditar.item }}">
+        <input type="submit" value="Salvar alterações">
+    </form>
+{% else %}
+    <h3>Adicionar item</h3>
+    <form action="compras_adc.php" method="post">
+        <input type="hidden" name="id" value="">
+        <input type="text" name="item" placeholder="Escreva o nome do item">
+        <input type="submit" value="Adicionar">
+    </form>
+{% endif %}
 
 <h3>Minha lista de compras</h3>
 <ul>
     {% for compra in compras %}
-        <li>{{compra.item}} - <a href="compras_apagar.php?id={{compra.id}}">Excluir</a> - <a href="compras_editar.php?id={{compra.id}}">Editar</a></li>
+        <li>{{ compra.item }} - <a href="compras_apagar.php?id={{ compra.id }}">Excluir</a> - <a href="compras.php?id={{ compra.id }}">Editar</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
