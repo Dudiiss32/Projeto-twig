@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+
+{% block conteudo %}
+
+{% if compromissosEditar %}
+    <h1>Adicionar um compromisso</h1>
+    <form action="compromissos_editar.php" method="post">
+    <input type="hidden" name="id" value="{{ compromissosEditar.id }}">
+    <label for="">Título</label>
+    <input type="text" name="titulo" placeholder="Adicione o título" value="{{ compromissosEditar.titulo }}"><br>
+    <label for="">Data</label>
+    <input type="date" name="data" value="{{ compromissosEditar.data }}"><br>
+    <input type="submit" value="Alterar">
+    </form>
+{% else %}
+    <h1>Adicionar um compromisso</h1>
+    <form action="compromissos_adc.php" method="post">
+    <label for="">Título</label>
+    <input type="text" name="titulo" placeholder="Adicione o título"><br>
+    <label for="">Data</label>
+    <input type="date" name="data"><br>
+    <input type="submit" value="Adicionar">
+    </form>
+{% endif %}
+    
+    <h2>Minha lista de compromissos</h2>
+
+    <ul>
+    {% for compromisso in compromissos %}
+        <a href="compromissos.php?crescente=true">Crescente</a> - <a href="compromissos.php?decrescente=true">Decrescente</a>
+
+        {% if Crescente %}
+
+        {% endif %}
+        {% if Decrescente %}
+        
+        {% endif %}
+        
+
+        <li><b>Título: </b> {{compromisso.titulo}} <br> Data: {{compromisso.data}} <br> <a href="compromissos.php?id={{compromisso.id}}">Editar</a> |  
+        <a href="compromissos_excluir.php?id={{compromisso.id}}">Excluir</a></li><br>
+    {% endfor %}
+    </ul>
+{% endblock %}
