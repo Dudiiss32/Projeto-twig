@@ -22,20 +22,16 @@
     <input type="submit" value="Adicionar">
     </form>
 {% endif %}
-    
-    <h2>Minha lista de compromissos</h2>
+    <br>
+    <hr>
+    <h2>Minha lista de compromissos</h2>    
 
+    <h4>Filtrar:    <a href="compromissos.php?filtro=crescente">Crescente</a> | <a href="compromissos.php?filtro=decrescente">Decrescente</a></h4>
     <ul>
+     
+     <br>
     {% for compromisso in compromissos %}
-        <a href="compromissos.php?crescente=true">Crescente</a> - <a href="compromissos.php?decrescente=true">Decrescente</a>
-
-        {% if Crescente %}
-
-        {% endif %}
-        {% if Decrescente %}
-        
-        {% endif %}
-        
+       
 
         <li><b>Título: </b> {{compromisso.titulo}} <br> Data: {{compromisso.data}} <br> <a href="compromissos.php?id={{compromisso.id}}">Editar</a> |  
         <a href="compromissos_excluir.php?id={{compromisso.id}}">Excluir</a></li><br>
