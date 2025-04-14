@@ -5,6 +5,6 @@
 require_once('twig_carregar.php');
 
 // Mostra o template na tela
-echo $twig->render('index.html', [
+echo $twig->render('home.html', [
     'fruta' => 'Abacaxi',
 ]);

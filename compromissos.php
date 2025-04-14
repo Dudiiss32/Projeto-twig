@@ -3,13 +3,10 @@
 require('twig_carregar.php');
 require('inc/banco.php');
 
-use Carbon\Carbon;
 date_default_timezone_set('America/Sao_Paulo');
 
-
-
 $id = $_GET['id'] ?? null;
-$filtro = $_GET['filtro'];
+$filtro = $_GET['filtro'] ?? null;
 
 if($filtro){
     switch ($filtro) {
