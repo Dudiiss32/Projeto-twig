@@ -13,7 +13,7 @@ if($login && $senha){
     if ($usuario && password_verify($senha, $usuario['senha'])) {
         session_start();
         $_SESSION['usuario'] = $usuario;
-        echo $twig->render('home.html');
+        echo $twig->render('home.html', ['usuario' => $_SESSION['usuario']]);
     } else {
         echo $twig->render('index.html', ['erro' => 'Login ou senha inválidos.']);
     }

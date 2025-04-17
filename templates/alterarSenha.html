@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+
+{% block conteudo %}
+
+<h1>Alterar senha</h1>
+{% if erro %}
+<p>{{erro}}</p>
+{% endif %}
+{% if sucesso %}
+<p>{{sucesso}}</p>
+{% endif %}
+
+<form action="alterarSenha.php" method="POST">
+    <input type="password" name="senhaAtual" placeholder="senha atual">
+    <br>
+    <input type="password" name="novaSenha" placeholder="nova senha">
+    <br>
+    <input type="password" name="senhaRepetida" placeholder="repetir senha">
+    <br>
+    <input type="submit" placeholder="Alterar">
+</form>
+
+{% endblock %}
