@@ -15,8 +15,12 @@ if($senhaAtual){
     $stmt->execute([':id' => $usuario['id']]);
     $dados = $stmt->fetch();
 
-    if($novaSenha == $senhaAtual && $novaSenha == $senhaRepetida){
+    if($novaSenha == $senhaAtual){
         echo $twig->render('alterarSenha.html', ['erro' => 'Senha igual a senha atual']);
+        die;
+    }
+    if($novaSenha != $senhaRepetida){
+        echo $twig->render('alterarSenha.html', ['erro' => 'Nova senha é diferente da senha repetida']);
         die;
     }
     if($dados && password_verify($senhaAtual, $dados['senha'])){
